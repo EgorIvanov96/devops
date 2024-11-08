@@ -1,3 +1,5 @@
+2. Создать именованный пайп ( named pipe ). Вывести в файл через созданный pipe вывод команды ss -plnt
+
 [root@egorivanov ~]# mkfifo my_pipe  # Создаю именованный пайп
 
 [root@egorivanov ~]# ss -plnt > my_pipe  # Вывод команды ss -plnt в именованный пайп
