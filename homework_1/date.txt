@@ -1,2 +1,5 @@
 [root@egorivanov ~]# date +%s
 1731102225
+
+[root@egorivanov ~]# date +%s | xargs -I{} date -d @{} +"%Y-%m-%d"
+2024-11-08
