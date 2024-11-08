@@ -1,0 +1,9 @@
+[root@egorivanov ~]# mkfifo my_pipe  # Создаю именованный пайп
+
+[root@egorivanov ~]# ss -plnt > my_pipe  # Вывод команды ss -plnt в именованный пайп
+
+[root@egorivanov ~]# cat my_pipe > put.txt   # Чтение именованного пайпа и запись в файл put.txt
+
+[root@egorivanov ~]# cat put.txt  # Простор файла put.txt
+State  Recv-Q Send-Q Local Address:Port Peer Address:PortProcess
+LISTEN 0      128          0.0.0.0:22        0.0.0.0:*    users:(("sshd",pid=1121,fd=5))

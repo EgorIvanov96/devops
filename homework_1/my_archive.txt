@@ -1,0 +1,6 @@
+[root@egorivanov ~]# tar -cvf archive.tar -C /var/log messages  # Запускаем команду для архивирования. Архив archive.tar 
+
+# В новом окне терминала отправляем содержимое в пайп
+[root@egorivanov ~]# cat /var/log/messages > my_pipe
+[root@egorivanov ~]# ls
+archive.tar  my_pipe  put.txt
