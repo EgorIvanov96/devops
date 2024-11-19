@@ -7,5 +7,5 @@
        valid_lft forever preferred_lft forever
 2: enp0s5: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
     link/ether ca:0b:49:35:4a:ec brd ff:ff:ff:ff:ff:ff
-    inet 93.183.73.58/24 brd 93.183.73.255 scope global noprefixroute enp0s5
+    inet 93.183.73.58/24 brd 93.183.73.255 scope global noprefixroute enp0s5   # IP-адрес интерфейса, подключенного к Интернету
        valid_lft forever preferred_lft forever

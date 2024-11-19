@@ -2,9 +2,273 @@
 Например, содержимое файла /var/log/messages
 На выходе получить архив tar или любой другой
 
-[root@egorivanov ~]# tar -cvf archive.tar -C /var/log messages  # Запускаем команду для архивирования. Архив archive.tar 
 
-# В новом окне терминала отправляем содержимое в пайп
-[root@egorivanov ~]# cat /var/log/messages > my_pipe
+
+[root@egorivanov ~]# mkfifo pipe  # Создаем именнованный папйп.
+[root@egorivanov ~]# tar -cvf archive.tar -T pipe &  # Запустить tar чтения из канала. Использую tar с -f опцией, указав имя канала. -T сообщает tar о необходимости прочитать канал. archive.tar - имя выходного архивного файла.
+[1] 316374
+[root@egorivanov ~]# echo /var/log/messages > pipe   # Отправляю пути к файлам в канал.
+  [root@egorivanov ~]# tar: Removing leading `/' from member names
+/var/log/messages
+exec 3>&-    # Завершаю процесс архивации и закрываю канал.
+[1]+  Done                    tar -cvf archive.tar -T pipe
+[root@egorivanov ~]# tar -tvf archive.tar  # Проверяю архив.
+-rw------- root/root     21380 2024-11-18 18:03 var/log/messages
 [root@egorivanov ~]# ls
-archive.tar  my_pipe  put.txt
+archive.tar  file.txt  my_pipe  pipe  put.txt
+[root@egorivanov ~]# cat archive.tar 
+var/log/messages0000600000000000000000000005160414716700561012664 0ustar  rootrootNov 17 03:50:16 egorivanov systemd[1]: Starting dnf makecache...
+Nov 17 03:50:17 egorivanov dnf[273565]: Oracle Linux 8 BaseOS Latest (x86_64)            36 kB/s | 4.3 kB     00:00
+Nov 17 03:50:34 egorivanov dnf[273565]: Oracle Linux 8 BaseOS Latest (x86_64)           4.6 MB/s |  82 MB     00:17
+Nov 17 03:50:49 egorivanov dnf[273565]: Oracle Linux 8 Application Stream (x86_64)       37 kB/s | 4.5 kB     00:00
+Nov 17 03:51:03 egorivanov dnf[273565]: Oracle Linux 8 Application Stream (x86_64)      4.7 MB/s |  65 MB     00:13
+Nov 17 03:51:18 egorivanov dnf[273565]: Latest Unbreakable Enterprise Kernel Release 6   29 kB/s | 3.5 kB     00:00
+Nov 17 03:51:22 egorivanov dnf[273565]: Metadata cache created.
+Nov 17 03:51:22 egorivanov systemd[1]: dnf-makecache.service: Succeeded.
+Nov 17 03:51:22 egorivanov systemd[1]: Started dnf makecache.
+Nov 17 03:53:01 egorivanov rsyslogd[900]: [origin software="rsyslogd" swVersion="8.2102.0-7.el8_6.1" x-pid="900" x-info="https://www.rsyslog.com"] rsyslogd was HUPed
+Nov 17 05:10:35 egorivanov rsyslogd[900]: imjournal: journal files changed, reloading...  [v8.2102.0-7.el8_6.1 try https://www.rsyslog.com/e/0 ]
+Nov 17 05:30:16 egorivanov systemd[1]: Starting dnf makecache...
+Nov 17 05:30:16 egorivanov dnf[274499]: Metadata cache refreshed recently.
+Nov 17 05:30:16 egorivanov systemd[1]: dnf-makecache.service: Succeeded.
+Nov 17 05:30:16 egorivanov systemd[1]: Started dnf makecache.
+Nov 17 06:57:30 egorivanov kernel: clocksource: timekeeping watchdog on CPU0: hpet wd-wd read-back delay of 123858ns
+Nov 17 06:57:30 egorivanov kernel: clocksource: wd-tsc-wd read-back delay of 150918ns, clock-skew test skipped!
+Nov 17 07:11:06 egorivanov systemd[1]: Starting dnf makecache...
+Nov 17 07:11:06 egorivanov dnf[275019]: Oracle Linux 8 BaseOS Latest (x86_64)            38 kB/s | 4.3 kB     00:00
+Nov 17 07:11:24 egorivanov dnf[275019]: Oracle Linux 8 BaseOS Latest (x86_64)           4.6 MB/s |  82 MB     00:17
+Nov 17 07:11:39 egorivanov dnf[275019]: Oracle Linux 8 Application Stream (x86_64)       42 kB/s | 4.5 kB     00:00
+Nov 17 07:11:53 egorivanov dnf[275019]: Oracle Linux 8 Application Stream (x86_64)      4.7 MB/s |  65 MB     00:13
+Nov 17 07:12:08 egorivanov dnf[275019]: Latest Unbreakable Enterprise Kernel Release 6   33 kB/s | 3.5 kB     00:00
+Nov 17 07:12:13 egorivanov dnf[275019]: Metadata cache created.
+Nov 17 07:12:13 egorivanov systemd[1]: dnf-makecache.service: Succeeded.
+Nov 17 07:12:13 egorivanov systemd[1]: Started dnf makecache.
+Nov 17 08:18:44 egorivanov auditd[568]: Audit daemon rotating log files
+Nov 17 08:23:59 egorivanov rsyslogd[900]: imjournal: journal files changed, reloading...  [v8.2102.0-7.el8_6.1 try https://www.rsyslog.com/e/0 ]
+Nov 17 08:35:34 egorivanov auditd[568]: Audit daemon rotating log files
+Nov 17 09:09:16 egorivanov systemd[1]: Starting dnf makecache...
+Nov 17 09:09:16 egorivanov dnf[285747]: Metadata cache refreshed recently.
+Nov 17 09:09:16 egorivanov systemd[1]: dnf-makecache.service: Succeeded.
+Nov 17 09:09:16 egorivanov systemd[1]: Started dnf makecache.
+Nov 17 10:03:33 egorivanov rsyslogd[900]: imjournal: journal files changed, reloading...  [v8.2102.0-7.el8_6.1 try https://www.rsyslog.com/e/0 ]
+Nov 17 10:03:44 egorivanov kernel: clocksource: timekeeping watchdog on CPU0: hpet wd-wd read-back delay of 294864ns
+Nov 17 10:03:44 egorivanov kernel: clocksource: wd-tsc-wd read-back delay of 1030027ns, clock-skew test skipped!
+Nov 17 10:59:16 egorivanov systemd[1]: Starting dnf makecache...
+Nov 17 10:59:16 egorivanov dnf[287933]: Oracle Linux 8 BaseOS Latest (x86_64)            32 kB/s | 4.3 kB     00:00
+Nov 17 10:59:17 egorivanov dnf[287933]: Oracle Linux 8 Application Stream (x86_64)       33 kB/s | 4.5 kB     00:00
+Nov 17 10:59:17 egorivanov dnf[287933]: Latest Unbreakable Enterprise Kernel Release 6   33 kB/s | 3.5 kB     00:00
+Nov 17 10:59:20 egorivanov dnf[287933]: Metadata cache created.
+Nov 17 10:59:20 egorivanov systemd[1]: dnf-makecache.service: Succeeded.
+Nov 17 10:59:20 egorivanov systemd[1]: Started dnf makecache.
+Nov 17 12:09:16 egorivanov systemd[1]: Starting dnf makecache...
+Nov 17 12:09:16 egorivanov dnf[288135]: Metadata cache refreshed recently.
+Nov 17 12:09:16 egorivanov systemd[1]: dnf-makecache.service: Succeeded.
+Nov 17 12:09:16 egorivanov systemd[1]: Started dnf makecache.
+Nov 17 13:49:36 egorivanov systemd[1]: Starting dnf makecache...
+Nov 17 13:49:36 egorivanov dnf[289796]: Metadata cache refreshed recently.
+Nov 17 13:49:36 egorivanov systemd[1]: dnf-makecache.service: Succeeded.
+Nov 17 13:49:36 egorivanov systemd[1]: Started dnf makecache.
+Nov 17 14:03:13 egorivanov auditd[568]: Audit daemon rotating log files
+Nov 17 15:05:58 egorivanov systemd[1]: Starting dnf makecache...
+Nov 17 15:05:59 egorivanov dnf[290693]: Oracle Linux 8 BaseOS Latest (x86_64)            39 kB/s | 4.3 kB     00:00
+Nov 17 15:05:59 egorivanov dnf[290693]: Oracle Linux 8 Application Stream (x86_64)       42 kB/s | 4.5 kB     00:00
+Nov 17 15:06:00 egorivanov dnf[290693]: Latest Unbreakable Enterprise Kernel Release 6   25 kB/s | 3.5 kB     00:00
+Nov 17 15:06:02 egorivanov dnf[290693]: Metadata cache created.
+Nov 17 15:06:02 egorivanov systemd[1]: dnf-makecache.service: Succeeded.
+Nov 17 15:06:02 egorivanov systemd[1]: Started dnf makecache.
+Nov 17 16:14:58 egorivanov systemd[1]: Starting dnf makecache...
+Nov 17 16:14:58 egorivanov dnf[291992]: Metadata cache refreshed recently.
+Nov 17 16:14:58 egorivanov systemd[1]: dnf-makecache.service: Succeeded.
+Nov 17 16:14:58 egorivanov systemd[1]: Started dnf makecache.
+Nov 17 18:13:16 egorivanov systemd[1]: Starting dnf makecache...
+Nov 17 18:13:17 egorivanov dnf[293206]: Oracle Linux 8 BaseOS Latest (x86_64)            38 kB/s | 4.3 kB     00:00
+Nov 17 18:13:17 egorivanov dnf[293206]: Oracle Linux 8 Application Stream (x86_64)       42 kB/s | 4.5 kB     00:00
+Nov 17 18:13:18 egorivanov dnf[293206]: Latest Unbreakable Enterprise Kernel Release 6   30 kB/s | 3.5 kB     00:00
+Nov 17 18:13:20 egorivanov dnf[293206]: Metadata cache created.
+Nov 17 18:13:20 egorivanov systemd[1]: dnf-makecache.service: Succeeded.
+Nov 17 18:13:20 egorivanov systemd[1]: Started dnf makecache.
+Nov 17 19:41:06 egorivanov systemd[1]: Starting dnf makecache...
+Nov 17 19:41:06 egorivanov dnf[295069]: Metadata cache refreshed recently.
+Nov 17 19:41:06 egorivanov systemd[1]: dnf-makecache.service: Succeeded.
+Nov 17 19:41:06 egorivanov systemd[1]: Started dnf makecache.
+Nov 17 20:24:33 egorivanov auditd[568]: Audit daemon rotating log files
+Nov 17 20:24:45 egorivanov rsyslogd[900]: imjournal: journal files changed, reloading...  [v8.2102.0-7.el8_6.1 try https://www.rsyslog.com/e/0 ]
+Nov 17 21:04:16 egorivanov systemd[1]: Starting dnf makecache...
+Nov 17 21:04:16 egorivanov dnf[296256]: Metadata cache refreshed recently.
+Nov 17 21:04:16 egorivanov systemd[1]: dnf-makecache.service: Succeeded.
+Nov 17 21:04:16 egorivanov systemd[1]: Started dnf makecache.
+Nov 17 22:33:16 egorivanov systemd[1]: Starting dnf makecache...
+Nov 17 22:33:17 egorivanov dnf[297744]: Oracle Linux 8 BaseOS Latest (x86_64)            39 kB/s | 4.3 kB     00:00
+Nov 17 22:33:17 egorivanov dnf[297744]: Oracle Linux 8 Application Stream (x86_64)       43 kB/s | 4.5 kB     00:00
+Nov 17 22:33:18 egorivanov dnf[297744]: Latest Unbreakable Enterprise Kernel Release 6   30 kB/s | 3.5 kB     00:00
+Nov 17 22:33:20 egorivanov dnf[297744]: Metadata cache created.
+Nov 17 22:33:20 egorivanov systemd[1]: dnf-makecache.service: Succeeded.
+Nov 17 22:33:20 egorivanov systemd[1]: Started dnf makecache.
+Nov 17 22:38:38 egorivanov systemd[1]: Starting Cleanup of Temporary Directories...
+Nov 17 22:38:38 egorivanov systemd[1]: systemd-tmpfiles-clean.service: Succeeded.
+Nov 17 22:38:38 egorivanov systemd[1]: Started Cleanup of Temporary Directories.
+Nov 17 23:53:16 egorivanov systemd[1]: Starting dnf makecache...
+Nov 17 23:53:16 egorivanov dnf[298806]: Metadata cache refreshed recently.
+Nov 17 23:53:16 egorivanov systemd[1]: dnf-makecache.service: Succeeded.
+Nov 17 23:53:16 egorivanov systemd[1]: Started dnf makecache.
+Nov 18 00:00:32 egorivanov systemd[1]: Starting update of the root trust anchor for DNSSEC validation in unbound...
+Nov 18 00:00:32 egorivanov systemd[1]: Started Update a database for mlocate.
+Nov 18 00:00:32 egorivanov systemd[1]: unbound-anchor.service: Succeeded.
+Nov 18 00:00:32 egorivanov systemd[1]: Started update of the root trust anchor for DNSSEC validation in unbound.
+Nov 18 00:00:32 egorivanov systemd[1]: mlocate-updatedb.service: Succeeded.
+Nov 18 01:18:16 egorivanov systemd[1]: Starting dnf makecache...
+Nov 18 01:18:16 egorivanov dnf[300175]: Metadata cache refreshed recently.
+Nov 18 01:18:16 egorivanov systemd[1]: dnf-makecache.service: Succeeded.
+Nov 18 01:18:16 egorivanov systemd[1]: Started dnf makecache.
+Nov 18 02:26:16 egorivanov systemd[1]: Starting dnf makecache...
+Nov 18 02:26:17 egorivanov dnf[300889]: Oracle Linux 8 BaseOS Latest (x86_64)            38 kB/s | 4.3 kB     00:00
+Nov 18 02:26:17 egorivanov dnf[300889]: Oracle Linux 8 Application Stream (x86_64)       39 kB/s | 4.5 kB     00:00
+Nov 18 02:26:18 egorivanov dnf[300889]: Latest Unbreakable Enterprise Kernel Release 6   31 kB/s | 3.5 kB     00:00
+Nov 18 02:26:20 egorivanov dnf[300889]: Metadata cache created.
+Nov 18 02:26:20 egorivanov systemd[1]: dnf-makecache.service: Succeeded.
+Nov 18 02:26:20 egorivanov systemd[1]: Started dnf makecache.
+Nov 18 03:12:58 egorivanov auditd[568]: Audit daemon rotating log files
+Nov 18 03:36:57 egorivanov systemd[1]: Starting dnf makecache...
+Nov 18 03:36:57 egorivanov dnf[301811]: Metadata cache refreshed recently.
+Nov 18 03:36:57 egorivanov systemd[1]: dnf-makecache.service: Succeeded.
+Nov 18 03:36:57 egorivanov systemd[1]: Started dnf makecache.
+Nov 18 04:03:10 egorivanov kernel: clocksource: timekeeping watchdog on CPU0: hpet wd-wd read-back delay of 91969ns
+Nov 18 04:03:10 egorivanov kernel: clocksource: wd-tsc-wd read-back delay of 163614ns, clock-skew test skipped!
+Nov 18 04:16:00 egorivanov kernel: clocksource: timekeeping watchdog on CPU0: hpet wd-wd read-back delay of 262022ns
+Nov 18 04:16:00 egorivanov kernel: clocksource: wd-tsc-wd read-back delay of 583112ns, clock-skew test skipped!
+Nov 18 05:11:22 egorivanov kernel: clocksource: timekeeping watchdog on CPU0: hpet wd-wd read-back delay of 158429ns
+Nov 18 05:11:22 egorivanov kernel: clocksource: wd-tsc-wd read-back delay of 226855ns, clock-skew test skipped!
+Nov 18 05:30:05 egorivanov systemd[1]: Starting dnf makecache...
+Nov 18 05:30:05 egorivanov dnf[303662]: Oracle Linux 8 BaseOS Latest (x86_64)            35 kB/s | 4.3 kB     00:00
+Nov 18 05:30:06 egorivanov dnf[303662]: Oracle Linux 8 Application Stream (x86_64)       42 kB/s | 4.5 kB     00:00
+Nov 18 05:30:06 egorivanov dnf[303662]: Latest Unbreakable Enterprise Kernel Release 6   26 kB/s | 3.5 kB     00:00
+Nov 18 05:30:09 egorivanov dnf[303662]: Metadata cache created.
+Nov 18 05:30:09 egorivanov systemd[1]: dnf-makecache.service: Succeeded.
+Nov 18 05:30:09 egorivanov systemd[1]: Started dnf makecache.
+Nov 18 07:21:44 egorivanov systemd[1]: Starting dnf makecache...
+Nov 18 07:21:44 egorivanov dnf[305069]: Metadata cache refreshed recently.
+Nov 18 07:21:44 egorivanov systemd[1]: dnf-makecache.service: Succeeded.
+Nov 18 07:21:44 egorivanov systemd[1]: Started dnf makecache.
+Nov 18 07:31:48 egorivanov rsyslogd[900]: imjournal: journal files changed, reloading...  [v8.2102.0-7.el8_6.1 try https://www.rsyslog.com/e/0 ]
+Nov 18 08:24:37 egorivanov kernel: clocksource: timekeeping watchdog on CPU0: hpet wd-wd read-back delay of 62763ns
+Nov 18 08:24:37 egorivanov kernel: clocksource: wd-tsc-wd read-back delay of 351250ns, clock-skew test skipped!
+Nov 18 08:29:08 egorivanov auditd[568]: Audit daemon rotating log files
+Nov 18 08:52:34 egorivanov systemd[1]: Starting dnf makecache...
+Nov 18 08:52:35 egorivanov dnf[307413]: Oracle Linux 8 BaseOS Latest (x86_64)            38 kB/s | 4.3 kB     00:00
+Nov 18 08:52:35 egorivanov dnf[307413]: Oracle Linux 8 Application Stream (x86_64)       33 kB/s | 4.5 kB     00:00
+Nov 18 08:52:36 egorivanov dnf[307413]: Latest Unbreakable Enterprise Kernel Release 6   31 kB/s | 3.5 kB     00:00
+Nov 18 08:52:38 egorivanov dnf[307413]: Metadata cache created.
+Nov 18 08:52:38 egorivanov systemd[1]: dnf-makecache.service: Succeeded.
+Nov 18 08:52:38 egorivanov systemd[1]: Started dnf makecache.
+Nov 18 10:12:57 egorivanov systemd[1]: Starting dnf makecache...
+Nov 18 10:12:57 egorivanov dnf[308618]: Metadata cache refreshed recently.
+Nov 18 10:12:57 egorivanov systemd[1]: dnf-makecache.service: Succeeded.
+Nov 18 10:12:57 egorivanov systemd[1]: Started dnf makecache.
+Nov 18 11:43:33 egorivanov systemd[1]: Starting dnf makecache...
+Nov 18 11:43:34 egorivanov dnf[310364]: Metadata cache refreshed recently.
+Nov 18 11:43:34 egorivanov systemd[1]: dnf-makecache.service: Succeeded.
+Nov 18 11:43:34 egorivanov systemd[1]: Started dnf makecache.
+Nov 18 13:03:16 egorivanov systemd[1]: Starting dnf makecache...
+Nov 18 13:03:22 egorivanov dnf[311964]: Oracle Linux 8 BaseOS Latest (x86_64)           757  B/s | 4.3 kB     00:05
+Nov 18 13:05:22 egorivanov dnf[311964]: Oracle Linux 8 Application Stream (x86_64)      0.0  B/s |   0  B     02:00
+Nov 18 13:05:22 egorivanov dnf[311964]: Errors during downloading metadata for repository 'ol8_appstream':
+Nov 18 13:05:22 egorivanov dnf[311964]:  - Curl error (28): Timeout was reached for https://yum.oracle.com/repo/OracleLinux/OL8/appstream/x86_64/repodata/repomd.xml [Connection timed out after 120000 milliseconds]
+Nov 18 13:05:23 egorivanov dnf[311964]: Error: Failed to download metadata for repo 'ol8_appstream': Cannot download repomd.xml: Curl error (28): Timeout was reached for https://yum.oracle.com/repo/OracleLinux/OL8/appstream/x86_64/repodata/repomd.xml [Connection timed out after 120000 milliseconds]
+Nov 18 13:05:23 egorivanov systemd[1]: dnf-makecache.service: Main process exited, code=exited, status=1/FAILURE
+Nov 18 13:05:23 egorivanov systemd[1]: dnf-makecache.service: Failed with result 'exit-code'.
+Nov 18 13:05:23 egorivanov systemd[1]: Failed to start dnf makecache.
+Nov 18 13:25:51 egorivanov systemd[1]: Created slice User Slice of UID 0.
+Nov 18 13:25:51 egorivanov systemd[1]: Starting User runtime directory /run/user/0...
+Nov 18 13:25:51 egorivanov systemd-logind[624]: New session 4 of user root.
+Nov 18 13:25:51 egorivanov systemd[1]: Started User runtime directory /run/user/0.
+Nov 18 13:25:51 egorivanov systemd[1]: Starting User Manager for UID 0...
+Nov 18 13:25:51 egorivanov systemd[312094]: Reached target Paths.
+Nov 18 13:25:51 egorivanov systemd[312094]: Reached target Timers.
+Nov 18 13:25:51 egorivanov systemd[312094]: Starting D-Bus User Message Bus Socket.
+Nov 18 13:25:51 egorivanov systemd[312094]: Listening on D-Bus User Message Bus Socket.
+Nov 18 13:25:51 egorivanov systemd[312094]: Reached target Sockets.
+Nov 18 13:25:51 egorivanov systemd[312094]: Reached target Basic System.
+Nov 18 13:25:51 egorivanov systemd[312094]: Reached target Default.
+Nov 18 13:25:51 egorivanov systemd[312094]: Startup finished in 43ms.
+Nov 18 13:25:51 egorivanov systemd[1]: Started User Manager for UID 0.
+Nov 18 13:25:51 egorivanov systemd[1]: Started Session 4 of user root.
+Nov 18 13:52:29 egorivanov auditd[568]: Audit daemon rotating log files
+Nov 18 14:22:16 egorivanov systemd[1]: Starting dnf makecache...
+Nov 18 14:22:16 egorivanov dnf[312993]: Metadata cache refreshed recently.
+Nov 18 14:22:16 egorivanov systemd[1]: dnf-makecache.service: Succeeded.
+Nov 18 14:22:16 egorivanov systemd[1]: Started dnf makecache.
+Nov 18 14:25:16 egorivanov systemd[1]: Started Session 6 of user root.
+Nov 18 14:25:16 egorivanov systemd-logind[624]: New session 6 of user root.
+Nov 18 14:42:45 egorivanov systemd[1]: Started Session 7 of user root.
+Nov 18 14:42:45 egorivanov systemd-logind[624]: New session 7 of user root.
+Nov 18 14:45:27 egorivanov systemd[1]: Started Session 8 of user root.
+Nov 18 14:45:27 egorivanov systemd-logind[624]: New session 8 of user root.
+Nov 18 14:46:27 egorivanov systemd[1]: session-8.scope: Succeeded.
+Nov 18 14:46:27 egorivanov systemd-logind[624]: Session 8 logged out. Waiting for processes to exit.
+Nov 18 14:46:27 egorivanov systemd-logind[624]: Removed session 8.
+Nov 18 14:48:15 egorivanov systemd[1]: session-7.scope: Succeeded.
+Nov 18 14:48:15 egorivanov systemd-logind[624]: Session 7 logged out. Waiting for processes to exit.
+Nov 18 14:48:15 egorivanov systemd-logind[624]: Removed session 7.
+Nov 18 14:49:06 egorivanov systemd[1]: Started Session 9 of user root.
+Nov 18 14:49:06 egorivanov systemd-logind[624]: New session 9 of user root.
+Nov 18 14:49:50 egorivanov systemd[1]: Started Session 10 of user root.
+Nov 18 14:49:50 egorivanov systemd-logind[624]: New session 10 of user root.
+Nov 18 15:07:58 egorivanov rsyslogd[900]: imjournal: journal files changed, reloading...  [v8.2102.0-7.el8_6.1 try https://www.rsyslog.com/e/0 ]
+Nov 18 15:29:48 egorivanov systemd[1]: Starting dnf makecache...
+Nov 18 15:29:48 egorivanov dnf[314249]: Metadata cache refreshed recently.
+Nov 18 15:29:48 egorivanov systemd[1]: dnf-makecache.service: Succeeded.
+Nov 18 15:29:48 egorivanov systemd[1]: Started dnf makecache.
+Nov 18 15:40:27 egorivanov systemd[1]: session-4.scope: Succeeded.
+Nov 18 15:40:27 egorivanov systemd-logind[624]: Session 4 logged out. Waiting for processes to exit.
+Nov 18 15:40:27 egorivanov systemd-logind[624]: Removed session 4.
+Nov 18 16:45:26 egorivanov systemd[1]: session-6.scope: Succeeded.
+Nov 18 16:45:26 egorivanov systemd-logind[624]: Session 6 logged out. Waiting for processes to exit.
+Nov 18 16:45:26 egorivanov systemd-logind[624]: Removed session 6.
+Nov 18 17:02:15 egorivanov systemd[1]: Starting dnf makecache...
+Nov 18 17:02:16 egorivanov dnf[315160]: Oracle Linux 8 BaseOS Latest (x86_64)            36 kB/s | 4.3 kB     00:00
+Nov 18 17:02:16 egorivanov dnf[315160]: Oracle Linux 8 Application Stream (x86_64)       47 kB/s | 4.5 kB     00:00
+Nov 18 17:02:17 egorivanov dnf[315160]: Latest Unbreakable Enterprise Kernel Release 6   36 kB/s | 3.5 kB     00:00
+Nov 18 17:02:19 egorivanov dnf[315160]: Metadata cache created.
+Nov 18 17:02:19 egorivanov systemd[1]: dnf-makecache.service: Succeeded.
+Nov 18 17:02:19 egorivanov systemd[1]: Started dnf makecache.
+Nov 18 17:03:28 egorivanov systemd[1]: session-9.scope: Succeeded.
+Nov 18 17:03:28 egorivanov systemd-logind[624]: Session 9 logged out. Waiting for processes to exit.
+Nov 18 17:03:28 egorivanov systemd-logind[624]: Removed session 9.
+Nov 18 17:03:28 egorivanov systemd[1]: session-10.scope: Succeeded.
+Nov 18 17:03:28 egorivanov systemd-logind[624]: Session 10 logged out. Waiting for processes to exit.
+Nov 18 17:03:28 egorivanov systemd-logind[624]: Removed session 10.
+Nov 18 17:03:38 egorivanov systemd[1]: Stopping User Manager for UID 0...
+Nov 18 17:03:38 egorivanov systemd[312094]: Stopped target Default.
+Nov 18 17:03:38 egorivanov systemd[312094]: Stopped target Basic System.
+Nov 18 17:03:38 egorivanov systemd[312094]: Stopped target Paths.
+Nov 18 17:03:38 egorivanov systemd[312094]: Stopped target Sockets.
+Nov 18 17:03:38 egorivanov systemd[312094]: Stopped target Timers.
+Nov 18 17:03:38 egorivanov systemd[312094]: Closed D-Bus User Message Bus Socket.
+Nov 18 17:03:38 egorivanov systemd[312094]: Reached target Shutdown.
+Nov 18 17:03:38 egorivanov systemd[312094]: Started Exit the Session.
+Nov 18 17:03:38 egorivanov systemd[312094]: Reached target Exit the Session.
+Nov 18 17:03:38 egorivanov systemd[1]: user@0.service: Succeeded.
+Nov 18 17:03:38 egorivanov systemd[1]: Stopped User Manager for UID 0.
+Nov 18 17:03:38 egorivanov systemd[1]: Stopping User runtime directory /run/user/0...
+Nov 18 17:03:38 egorivanov systemd[1]: run-user-0.mount: Succeeded.
+Nov 18 17:03:38 egorivanov systemd[1]: user-runtime-dir@0.service: Succeeded.
+Nov 18 17:03:38 egorivanov systemd[1]: Stopped User runtime directory /run/user/0.
+Nov 18 17:03:38 egorivanov systemd[1]: Removed slice User Slice of UID 0.
+Nov 18 17:34:01 egorivanov kernel: clocksource: timekeeping watchdog on CPU0: hpet wd-wd read-back delay of 108361ns
+Nov 18 17:34:01 egorivanov kernel: clocksource: wd-tsc-wd read-back delay of 157535ns, clock-skew test skipped!
+Nov 18 18:03:29 egorivanov systemd[1]: Created slice User Slice of UID 0.
+Nov 18 18:03:29 egorivanov systemd[1]: Starting User runtime directory /run/user/0...
+Nov 18 18:03:29 egorivanov systemd-logind[624]: New session 11 of user root.
+Nov 18 18:03:29 egorivanov systemd[1]: Started User runtime directory /run/user/0.
+Nov 18 18:03:29 egorivanov systemd[1]: Starting User Manager for UID 0...
+Nov 18 18:03:29 egorivanov systemd[316215]: Reached target Paths.
+Nov 18 18:03:29 egorivanov systemd[316215]: Reached target Timers.
+Nov 18 18:03:29 egorivanov systemd[316215]: Starting D-Bus User Message Bus Socket.
+Nov 18 18:03:29 egorivanov systemd[316215]: Listening on D-Bus User Message Bus Socket.
+Nov 18 18:03:29 egorivanov systemd[316215]: Reached target Sockets.
+Nov 18 18:03:29 egorivanov systemd[316215]: Reached target Basic System.
+Nov 18 18:03:29 egorivanov systemd[316215]: Reached target Default.
+Nov 18 18:03:29 egorivanov systemd[316215]: Startup finished in 44ms.
+Nov 18 18:03:29 egorivanov systemd[1]: Started User Manager for UID 0.
+Nov 18 18:03:29 egorivanov systemd[1]: Started Session 11 of user root.
+[root@egorivanov ~]# 
