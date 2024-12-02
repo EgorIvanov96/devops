@@ -1,0 +1,132 @@
+[root@egorivanov ~]# sudo journalctl -b  # Вывод сообщение о последним запуске системы, -b показывает записи журнала текущей загрузки
+-- Logs begin at Fri 2024-11-08 22:22:46 UTC, end at Mon 2024-12-02 15:08:25 UTC. --
+Nov 08 22:22:46 localhost.localdomain kernel: Linux version 5.4.17-2136.310.7.1.el8uek.x86_64 (mockbuild@host-100-100-224-44) (gcc version 8.3.1 20190507 (Red Hat 8.3.1-4.5.0.8) (GCC)) #2 SMP Wed Aug 17 >
+Nov 08 22:22:46 localhost.localdomain kernel: Command line: BOOT_IMAGE=(hd0,gpt2)/boot/vmlinuz-5.4.17-2136.310.7.1.el8uek.x86_64 root=UUID=a8d18b4e-1ac0-45e3-ba22-6e3a05840f20 ro console=tty0 console=tty>
+Nov 08 22:22:46 localhost.localdomain kernel: x86/fpu: Supporting XSAVE feature 0x001: 'x87 floating point registers'
+Nov 08 22:22:46 localhost.localdomain kernel: x86/fpu: Supporting XSAVE feature 0x002: 'SSE registers'
+Nov 08 22:22:46 localhost.localdomain kernel: x86/fpu: Supporting XSAVE feature 0x004: 'AVX registers'
+Nov 08 22:22:46 localhost.localdomain kernel: x86/fpu: Supporting XSAVE feature 0x020: 'AVX-512 opmask'
+Nov 08 22:22:46 localhost.localdomain kernel: x86/fpu: Supporting XSAVE feature 0x040: 'AVX-512 Hi256'
+Nov 08 22:22:46 localhost.localdomain kernel: x86/fpu: Supporting XSAVE feature 0x080: 'AVX-512 ZMM_Hi256'
+Nov 08 22:22:46 localhost.localdomain kernel: x86/fpu: xstate_offset[2]:  576, xstate_sizes[2]:  256
+Nov 08 22:22:46 localhost.localdomain kernel: x86/fpu: xstate_offset[5]: 1088, xstate_sizes[5]:   64
+Nov 08 22:22:46 localhost.localdomain kernel: x86/fpu: xstate_offset[6]: 1152, xstate_sizes[6]:  512
+Nov 08 22:22:46 localhost.localdomain kernel: x86/fpu: xstate_offset[7]: 1664, xstate_sizes[7]: 1024
+Nov 08 22:22:46 localhost.localdomain kernel: x86/fpu: Enabled xstate features 0xe7, context size is 2688 bytes, using 'standard' format.
+Nov 08 22:22:46 localhost.localdomain kernel: BIOS-provided physical RAM map:
+Nov 08 22:22:46 localhost.localdomain kernel: BIOS-e820: [mem 0x0000000000000000-0x000000000009ffff] usable
+Nov 08 22:22:46 localhost.localdomain kernel: BIOS-e820: [mem 0x0000000000100000-0x0000000058f4ffff] usable
+Nov 08 22:22:46 localhost.localdomain kernel: BIOS-e820: [mem 0x0000000058f50000-0x000000005c8bbfff] reserved
+Nov 08 22:22:46 localhost.localdomain kernel: BIOS-e820: [mem 0x000000005c8bc000-0x000000007c739fff] usable
+Nov 08 22:22:46 localhost.localdomain kernel: BIOS-e820: [mem 0x000000007c73a000-0x000000007e521fff] reserved
+Nov 08 22:22:46 localhost.localdomain kernel: BIOS-e820: [mem 0x000000007e522000-0x000000007e9a0fff] usable
+Nov 08 22:22:46 localhost.localdomain kernel: BIOS-e820: [mem 0x000000007e9a1000-0x000000007e9a2fff] reserved
+Nov 08 22:22:46 localhost.localdomain kernel: BIOS-e820: [mem 0x000000007e9a3000-0x000000007ea73fff] usable
+Nov 08 22:22:46 localhost.localdomain kernel: BIOS-e820: [mem 0x000000007ea74000-0x000000007ea75fff] reserved
+Nov 08 22:22:46 localhost.localdomain kernel: BIOS-e820: [mem 0x000000007ea76000-0x000000007ea8efff] usable
+Nov 08 22:22:46 localhost.localdomain kernel: BIOS-e820: [mem 0x000000007ea8f000-0x000000007ea90fff] ACPI data
+Nov 08 22:22:46 localhost.localdomain kernel: BIOS-e820: [mem 0x000000007ea91000-0x000000007eb1afff] reserved
+Nov 08 22:22:46 localhost.localdomain kernel: BIOS-e820: [mem 0x000000007eb1b000-0x000000007fb9afff] usable
+Nov 08 22:22:46 localhost.localdomain kernel: BIOS-e820: [mem 0x000000007fb9b000-0x000000007fbf2fff] reserved
+Nov 08 22:22:46 localhost.localdomain kernel: BIOS-e820: [mem 0x000000007fbf3000-0x000000007fbfafff] ACPI data
+Nov 08 22:22:46 localhost.localdomain kernel: BIOS-e820: [mem 0x000000007fbfb000-0x000000007fbfefff] ACPI NVS
+Nov 08 22:22:46 localhost.localdomain kernel: BIOS-e820: [mem 0x000000007fbff000-0x000000007ff7bfff] usable
+Nov 08 22:22:46 localhost.localdomain kernel: BIOS-e820: [mem 0x000000007ff7c000-0x000000007fffffff] reserved
+Nov 08 22:22:46 localhost.localdomain kernel: NX (Execute Disable) protection: active
+Nov 08 22:22:46 localhost.localdomain kernel: efi: EFI v2.70 by BHYVE
+Nov 08 22:22:46 localhost.localdomain kernel: efi:  SMBIOS=0x7fbcc000  ACPI=0x7fbfa000  ACPI 2.0=0x7fbfa014  MEMATTR=0x7f388018 
+Nov 08 22:22:46 localhost.localdomain kernel: SMBIOS 2.8 present.
+Nov 08 22:22:46 localhost.localdomain kernel: DMI: vStack SmartDC vStack bhyve/BHYVE, BIOS 13.0 11/10/2020
+Nov 08 22:22:46 localhost.localdomain kernel: tsc: Detected 3000.000 MHz processor
+Nov 08 22:22:46 localhost.localdomain kernel: tsc: Detected 2992.853 MHz TSC
+Nov 08 22:22:46 localhost.localdomain kernel: e820: update [mem 0x00000000-0x00000fff] usable ==> reserved
+Nov 08 22:22:46 localhost.localdomain kernel: e820: remove [mem 0x000a0000-0x000fffff] usable
+Nov 08 22:22:46 localhost.localdomain kernel: last_pfn = 0x7ff7c max_arch_pfn = 0x400000000
+Nov 08 22:22:46 localhost.localdomain kernel: MTRR default type: write-back
+Nov 08 22:22:46 localhost.localdomain kernel: MTRR fixed ranges enabled:
+Nov 08 22:22:46 localhost.localdomain kernel:   00000-9FFFF write-back
+Nov 08 22:22:46 localhost.localdomain kernel:   A0000-FFFFF uncachable
+Nov 08 22:22:46 localhost.localdomain kernel: MTRR variable ranges enabled:
+Nov 08 22:22:46 localhost.localdomain kernel:   0 base 000080000000 mask 3FFF80000000 uncachable
+Nov 08 22:22:46 localhost.localdomain kernel:   1 disabled
+Nov 08 22:22:46 localhost.localdomain kernel:   2 disabled
+Nov 08 22:22:46 localhost.localdomain kernel:   3 disabled
+Nov 08 22:22:46 localhost.localdomain kernel:   4 disabled
+Nov 08 22:22:46 localhost.localdomain kernel:   5 disabled
+Nov 08 22:22:46 localhost.localdomain kernel:   6 disabled
+Nov 08 22:22:46 localhost.localdomain kernel:   7 disabled
+Nov 08 22:22:46 localhost.localdomain kernel:   8 disabled
+Nov 08 22:22:46 localhost.localdomain kernel:   9 disabled
+Nov 08 22:22:46 localhost.localdomain kernel: x86/PAT: Configuration [0-7]: WB  WC  UC- UC  WB  WP  UC- WT  
+Nov 08 22:22:46 localhost.localdomain kernel: found SMP MP-table at [mem 0x000f0000-0x000f000f]
+Nov 08 22:22:46 localhost.localdomain kernel: check: Scanning 1 areas for low memory corruption
+Nov 08 22:22:46 localhost.localdomain kernel: Using GB pages for direct mapping
+lines 1-62
+
+
+
+[root@egorivanov ~]# sudo journalctl --since '1 hour ago'  # Вывод сообщение о последним запуске системы не старше 1 часа, --since '1 hour ago' ограничивает вывод журнала за последний час
+-- Logs begin at Fri 2024-11-08 22:22:46 UTC, end at Mon 2024-12-02 15:10:23 UTC. --
+Dec 02 14:10:41 egorivanov.local sshd[703942]: Connection closed by authenticating user root 45.78.4.56 port 35653 [preauth]
+Dec 02 14:10:43 egorivanov.local sshd[703949]: Invalid user dbuser from 45.15.158.98 port 49050
+Dec 02 14:10:44 egorivanov.local sshd[703949]: Connection closed by invalid user dbuser 45.15.158.98 port 49050 [preauth]
+Dec 02 14:10:47 egorivanov.local sshd[703946]: Connection closed by authenticating user root 45.78.5.239 port 35377 [preauth]
+Dec 02 14:11:00 egorivanov.local sshd[703952]: Connection closed by authenticating user root 45.78.6.173 port 44641 [preauth]
+Dec 02 14:11:04 egorivanov.local sudo[703961]:     root : TTY=pts/6 ; PWD=/root ; USER=root ; COMMAND=/bin/chown syslog:adm /var/log/my.log
+Dec 02 14:11:04 egorivanov.local sudo[703961]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Dec 02 14:11:04 egorivanov.local sudo[703961]: pam_unix(sudo:session): session opened for user root by root(uid=0)
+Dec 02 14:11:04 egorivanov.local sudo[703961]: pam_unix(sudo:session): session closed for user root
+Dec 02 14:11:05 egorivanov.local sshd[703958]: Invalid user celery from 45.15.158.98 port 39706
+Dec 02 14:11:05 egorivanov.local sshd[703958]: Connection closed by invalid user celery 45.15.158.98 port 39706 [preauth]
+Dec 02 14:11:05 egorivanov.local sshd[703955]: Connection closed by authenticating user root 45.78.4.88 port 45391 [preauth]
+Dec 02 14:11:06 egorivanov.local sshd[703964]: Received disconnect from 206.189.230.76 port 57710:11: Bye Bye [preauth]
+Dec 02 14:11:06 egorivanov.local sshd[703964]: Disconnected from authenticating user root 206.189.230.76 port 57710 [preauth]
+Dec 02 14:11:22 egorivanov.local sudo[703967]:     root : TTY=pts/6 ; PWD=/root ; USER=root ; COMMAND=/bin/nano /etc/rsyslog.conf
+Dec 02 14:11:22 egorivanov.local sudo[703967]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Dec 02 14:11:22 egorivanov.local sudo[703967]: pam_unix(sudo:session): session opened for user root by root(uid=0)
+Dec 02 14:11:28 egorivanov.local sshd[703970]: Invalid user bee from 159.65.220.18 port 39258
+Dec 02 14:11:28 egorivanov.local sshd[703970]: Received disconnect from 159.65.220.18 port 39258:11: Bye Bye [preauth]
+Dec 02 14:11:28 egorivanov.local sshd[703970]: Disconnected from invalid user bee 159.65.220.18 port 39258 [preauth]
+Dec 02 14:11:32 egorivanov.local sshd[703973]: Invalid user gf from 45.15.158.98 port 32816
+Dec 02 14:11:32 egorivanov.local sshd[703973]: Connection closed by invalid user gf 45.15.158.98 port 32816 [preauth]
+Dec 02 14:11:36 egorivanov.local sshd[703976]: Received disconnect from 139.59.33.204 port 51586:11: Bye Bye [preauth]
+Dec 02 14:11:36 egorivanov.local sshd[703976]: Disconnected from authenticating user root 139.59.33.204 port 51586 [preauth]
+Dec 02 14:11:39 egorivanov.local sudo[703967]: pam_unix(sudo:session): session closed for user root
+Dec 02 14:11:45 egorivanov.local sudo[703983]:     root : TTY=pts/6 ; PWD=/root ; USER=root ; COMMAND=/bin/touch /var/log/my.log
+Dec 02 14:11:45 egorivanov.local sudo[703983]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Dec 02 14:11:45 egorivanov.local sudo[703983]: pam_unix(sudo:session): session opened for user root by root(uid=0)
+Dec 02 14:11:45 egorivanov.local sudo[703983]: pam_unix(sudo:session): session closed for user root
+Dec 02 14:11:46 egorivanov.local sshd[703986]: Invalid user davega from 161.132.53.75 port 57388
+Dec 02 14:11:46 egorivanov.local sshd[703986]: Received disconnect from 161.132.53.75 port 57388:11: Bye Bye [preauth]
+Dec 02 14:11:46 egorivanov.local sshd[703986]: Disconnected from invalid user davega 161.132.53.75 port 57388 [preauth]
+Dec 02 14:11:50 egorivanov.local sudo[703992]:     root : TTY=pts/6 ; PWD=/root ; USER=root ; COMMAND=/bin/chmod 644 /var/log/my.log
+Dec 02 14:11:50 egorivanov.local sudo[703992]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Dec 02 14:11:50 egorivanov.local sudo[703992]: pam_unix(sudo:session): session opened for user root by root(uid=0)
+Dec 02 14:11:50 egorivanov.local sudo[703992]: pam_unix(sudo:session): session closed for user root
+Dec 02 14:11:51 egorivanov.local sshd[703989]: Received disconnect from 122.168.194.41 port 43050:11: Bye Bye [preauth]
+Dec 02 14:11:51 egorivanov.local sshd[703989]: Disconnected from authenticating user root 122.168.194.41 port 43050 [preauth]
+Dec 02 14:11:55 egorivanov.local sshd[703995]: Connection closed by authenticating user root 45.15.158.98 port 38084 [preauth]
+Dec 02 14:11:55 egorivanov.local sudo[703998]:     root : TTY=pts/6 ; PWD=/root ; USER=root ; COMMAND=/bin/chown syslog:adm /var/log/my.log
+Dec 02 14:11:55 egorivanov.local sudo[703998]: pam_systemd(sudo:session): Cannot create session: Already running in a session or user slice
+Dec 02 14:11:55 egorivanov.local sudo[703998]: pam_unix(sudo:session): session opened for user root by root(uid=0)
+Dec 02 14:11:55 egorivanov.local sudo[703998]: pam_unix(sudo:session): session closed for user root
+Dec 02 14:11:57 egorivanov.local sshd[703979]: Connection closed by authenticating user root 45.78.4.65 port 41613 [preauth]
+Dec 02 14:11:57 egorivanov.local sshd[704001]: Invalid user hussein from 37.221.66.254 port 48560
+Dec 02 14:11:57 egorivanov.local sshd[704001]: Received disconnect from 37.221.66.254 port 48560:11: Bye Bye [preauth]
+Dec 02 14:11:57 egorivanov.local sshd[704001]: Disconnected from invalid user hussein 37.221.66.254 port 48560 [preauth]
+Dec 02 14:12:02 egorivanov.local sshd[704004]: Invalid user zhangqi from 204.10.194.201 port 53106
+Dec 02 14:12:02 egorivanov.local sshd[704004]: Received disconnect from 204.10.194.201 port 53106:11: Bye Bye [preauth]
+Dec 02 14:12:02 egorivanov.local sshd[704004]: Disconnected from invalid user zhangqi 204.10.194.201 port 53106 [preauth]
+Dec 02 14:12:08 egorivanov.local sshd[704007]: Received disconnect from 103.147.14.129 port 37154:11: Bye Bye [preauth]
+Dec 02 14:12:08 egorivanov.local sshd[704007]: Disconnected from authenticating user root 103.147.14.129 port 37154 [preauth]
+Dec 02 14:12:09 egorivanov.local sshd[704010]: Received disconnect from 147.45.77.165 port 55570:11: Bye Bye [preauth]
+Dec 02 14:12:09 egorivanov.local sshd[704010]: Disconnected from authenticating user root 147.45.77.165 port 55570 [preauth]
+Dec 02 14:12:20 egorivanov.local sshd[704019]: Invalid user ed from 182.253.191.50 port 59200
+Dec 02 14:12:21 egorivanov.local sshd[704019]: Received disconnect from 182.253.191.50 port 59200:11: Bye Bye [preauth]
+Dec 02 14:12:21 egorivanov.local sshd[704019]: Disconnected from invalid user ed 182.253.191.50 port 59200 [preauth]
+Dec 02 14:12:22 egorivanov.local sshd[704016]: Connection closed by 46.25.236.192 port 41196 [preauth]
+Dec 02 14:12:23 egorivanov.local sshd[704022]: Invalid user prueba from 45.15.158.98 port 51804
+Dec 02 14:12:23 egorivanov.local sshd[704022]: Connection closed by invalid user prueba 45.15.158.98 port 51804 [preauth]
+Dec 02 14:12:29 egorivanov.local sshd[704013]: Connection closed by authenticating user root 45.78.5.10 port 46551 [preauth]
+lines 1-62
+

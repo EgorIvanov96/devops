@@ -1,0 +1,14 @@
+[root@egorivanov ~]# nano /etc/rsyslog.conf # Открываем файл конфигураций rsyslog
+
+# Добавляем в файл rsyslog.conf *.info    /var/log/my.log
+*.info    /var/log/my.log  # *.info все объекты с уровнем разрешения,  /var/log/my.log - файл в который будут записываться сообщения
+
+[root@egorivanov ~]# touch /var/log/my.log  # Создаем файл журнала
+[root@egorivanov ~]# chmod 644 /var/log/my.log # Предоставляем разрешения
+[root@egorivanov ~]# sudo systemctl restart rsyslog # Перезапускаем службу rsyslog, чтобы вступили в силу изменения
+
+# Проверка
+
+[root@egorivanov ~]# logger -p user.info 'Привет, это тест!!!!' # Запишем сообщение в журнал
+[root@egorivanov ~]# cat /var/log/my.log | grep 'Привет'  # Проверим, что это сообщение есть
+Dec  2 14:20:11 egorivanov root[704285]: Привет, это тест!!!!

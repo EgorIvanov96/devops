@@ -1,0 +1,9 @@
+[root@egorivanov ~]# journalctl -u systemd-logind -n 25   # journalctl команда для запроса и отображения системных журналов, -u systemd-logind фильтрует журнал, -n 25 отображает последние 25 строк
+-- Logs begin at Fri 2024-11-08 22:22:46 UTC, end at Mon 2024-12-02 13:49:37 UTC. --
+Dec 02 12:25:20 egorivanov.local systemd-logind[624]: New session 20 of user root.
+Dec 02 12:53:49 egorivanov.local systemd-logind[624]: New session 22 of user root.
+Dec 02 13:07:06 egorivanov.local systemd-logind[624]: New session 23 of user root.
+Dec 02 13:23:47 egorivanov.local systemd-logind[624]: New session 24 of user root.
+Dec 02 13:40:58 egorivanov.local systemd-logind[624]: New session 25 of user root.
+Dec 02 13:48:44 egorivanov.local systemd-logind[624]: New session 26 of user root.
+[root@egorivanov ~]# journalctl -u systemd-logind

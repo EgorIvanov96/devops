@@ -1,0 +1,3 @@
+[root@egorivanov ~]# logger -p kern.info 'добра и мира посланникам из Альфа-Центавра с facility' # logger - записывает сообщение в системный журнал, -p kern.info - kern указывает объект, info уровень жерналирования и далее сообжение
+[root@egorivanov ~]# cat /var/log/messages | grep 'добра и мира'   # cat /var/log/messages - отображаем файл, grep 'добра и мира' ищет строку которая, начинается на 'добра и мира' и отображаем только ее
+Dec  2 13:25:34 egorivanov root[703047]: добра и мира посланникам из Альфа-Центавра с facility

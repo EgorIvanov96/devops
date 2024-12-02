@@ -1,0 +1,18 @@
+[root@egorivanov ~]# last -f /var/log/wtmp | tail -n 7   # last -f /var/log/wtmp считываем и отображаем записи из файла wtmp, tail -n 7 выводим последние 7 строк отображаемого журнала
+root     pts/0        5.18.251.26      Fri Nov  8 18:01 - 20:16  (02:14)
+root     pts/0        5.18.251.26      Fri Nov  8 11:30 - 13:43  (02:12)
+root     pts/1        5.18.251.26      Thu Nov  7 14:51 - 17:06  (02:15)
+root     pts/0        5.18.251.26      Thu Nov  7 14:46 - 16:58  (02:12)
+reboot   system boot  5.4.17-2136.310. Thu Nov  7 14:39 - 22:17 (1+07:38)
+
+wtmp begins Wed Sep 21 08:11:39 2022
+
+[root@egorivanov ~]# last | tail -n 7   # last показать список, tail -n 7 выводим последние 7 строк отображаемого журнала
+root     pts/0        5.18.251.26      Fri Nov  8 18:01 - 20:16  (02:14)
+root     pts/0        5.18.251.26      Fri Nov  8 11:30 - 13:43  (02:12)
+root     pts/1        5.18.251.26      Thu Nov  7 14:51 - 17:06  (02:15)
+root     pts/0        5.18.251.26      Thu Nov  7 14:46 - 16:58  (02:12)
+reboot   system boot  5.4.17-2136.310. Thu Nov  7 14:39 - 22:17 (1+07:38)
+
+wtmp begins Wed Sep 21 08:11:39 2022
+

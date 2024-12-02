@@ -1,0 +1,39 @@
+[root@egorivanov ~]# sudo touch /etc/rsyslog.d/ssh.conf  # Создаю файл конфигурации для ведения журнала SSH
+[root@egorivanov ~]# sudo nano /etc/rsyslog.d/ssh.conf  # Открываю созданный файл
+
+# Записываю в файл ssh.conf
+if $programname == 'sshd' then /var/log/ssh_events.log
+& stop
+# Это направляем журналы процесса sshd в отдельный файл журнала
+
+[root@egorivanov ~]# sudo systemctl restart rsyslog  # Перезапустим чтобы приминились изменения
+[root@egorivanov ~]# sudo touch /etc/logrotate.d/ssh_events # Создаем новый файл конфигурации logrotate
+[root@egorivanov ~]# sudo nano /etc/logrotate.d/ssh_events # Открываем файл 
+
+# Записываем в файл ssh_events
+/var/log/ssh_events.log {
+    daily  # ежедневная ротация журналов
+    size 1M  # ротация файла журнала при достижении им размера 1 М
+    rotate 10  # сохраняет до 10 ротируемых файлов журнала
+    compress  # сжимает старые файлы журналов для экономии места
+    missingok  #  пропускает отсутствующие файлы журнала без возникновения ошибки
+    notifempty  #  пропускает ротацию пустых файлов
+    create 640 root adm  # обеспечивает правильные разрешения и права собственности при создании нового файла журнала
+}
+
+[root@egorivanov ~]# sudo tail -f /var/log/ssh_events.log   # Запустим просмотр файла
+Dec  2 14:46:10 egorivanov sshd[705106]: Received disconnect from 122.168.194.41 port 33116:11: Bye Bye [preauth]
+Dec  2 14:46:10 egorivanov sshd[705106]: Disconnected from invalid user lv 122.168.194.41 port 33116 [preauth]
+Dec  2 14:46:13 egorivanov sshd[705109]: Invalid user iesteban from 139.59.33.204 port 53900
+Dec  2 14:46:13 egorivanov sshd[705109]: Received disconnect from 139.59.33.204 port 53900:11: Bye Bye [preauth]
+Dec  2 14:46:13 egorivanov sshd[705109]: Disconnected from invalid user iesteban 139.59.33.204 port 53900 [preauth]
+Dec  2 14:46:23 egorivanov sshd[705103]: Connection closed by authenticating user root 45.78.6.170 port 42811 [preauth]
+Dec  2 14:46:33 egorivanov sshd[705112]: Connection closed by authenticating user root 45.15.158.98 port 52534 [preauth]
+Dec  2 14:46:43 egorivanov sshd[705115]: Connection closed by 46.25.236.192 port 49368 [preauth]
+Dec  2 14:46:47 egorivanov sshd[705118]: Invalid user demo from 45.15.158.98 port 48974
+Dec  2 14:46:47 egorivanov sshd[705118]: Connection closed by invalid user demo 45.15.158.98 port 48974 [preauth]
+Dec  2 14:46:54 egorivanov sshd[705124]: Invalid user ml from 61.222.211.114 port 43708
+Dec  2 14:46:54 egorivanov sshd[705124]: Received disconnect from 61.222.211.114 port 43708:11: Bye Bye [preauth]
+Dec  2 14:46:54 egorivanov sshd[705124]: Disconnected from invalid user ml 61.222.211.114 port 43708 [preauth]
+Dec  2 14:46:55 egorivanov sshd[705127]: Invalid user ivan from 161.132.53.75 port 57092
+Dec  2 14:46:55 egorivanov sshd[705127]: Received disconnect from 161.132.53.75 port 57092:11: Bye Bye [preauth]
